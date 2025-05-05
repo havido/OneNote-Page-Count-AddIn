@@ -20,18 +20,22 @@ export async function run() {
   try {
     await OneNote.run(async (context) => {
 
-        // Get the current page.
+        // I want to count # of pages in the current section
+        // Get the current page, section, and notebook.
         const page = context.application.getActivePage();
+        const section = context.application.getActiveSection();
+        const notebook = context.application.getActiveNotebook();
+      
+        section.pages.load("items");
+        await context.sync();
+        console.log("Number of pages in the current section: " + section.pages.items.length);
 
-        // Queue a command to set the page title.
-        page.title = "Hello World";
-
-        // Queue a command to add an outline to the page.
-        const html = "<p><ol><li>Item #1</li><li>Item #2</li></ol></p>";
-        page.addOutline(40, 90, html);
+        // // Queue a command to add an outline to the page.
+        // const html = "<p><ol><li>Item #1</li><li>Item #2</li></ol></p>";
+        page.addOutline(40, 90, "Number of pages in the current section: " + section.pages.items.length);
 
         // Run the queued commands.
-        await context.sync();
+        // await context.sync();
     });
   } catch (error) {
       console.log("Error: " + error);
