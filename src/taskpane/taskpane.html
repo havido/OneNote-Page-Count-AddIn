@@ -8,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contoso Task Pane Add-in</title>
+    <title>OneNote Counter</title>
 
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
@@ -29,26 +29,40 @@
         <h2 class="ms-font-xl">Please <a target="_blank" href="https://learn.microsoft.com/office/dev/add-ins/testing/test-debug-office-add-ins#sideload-an-office-add-in-for-testing">sideload</a> your add-in to see app body.</h2>
     </section>
     <main id="app-body" class="ms-welcome__main" style="display: none;">
-        <h2 class="ms-font-xl"> Discover what Office Add-ins can do for you today! </h2>
-        <ul class="ms-List ms-welcome__features">
-            <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Ribbon ms-font-xl"></i>
-                <span class="ms-font-m">Achieve more with Office integration</span>
-            </li>
-            <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Unlock ms-font-xl"></i>
-                <span class="ms-font-m">Unlock features and functionality</span>
-            </li>
-            <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Design ms-font-xl"></i>
-                <span class="ms-font-m">Create and visualize like a pro</span>
-            </li>
-        </ul>
-        <p class="ms-font-l">Modify the source files, then click <b>Run</b>.</p>
-        <div role="button" id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-            <span class="ms-Button-label">Run</span>
+        <div id="app-body">
+            <h2 class="ms-font-xl">OneNote Counter</h2>
+            <p class="ms-font-s">This add-in counts the number of items in your OneNote notebooks.</p>
+            <p class="ms-font-s">Select the scope and item type you want to count.</p>
+            <p class="ms-font-s">Click the "Run" button to execute the count.</p>
+            <p class="ms-font-s">The results will be displayed in the console.</p>
+            
+            <div>
+                <label for="scope-dropdown">Count From:</label>
+                <select id="scope-dropdown">
+                <option value="Application">Application/Account</option>
+                <option value="Notebook">Notebook</option>
+                <option value="Section Group">Section Group</option>
+                <option value="Section">Section</option>
+                <option value="Page">Page</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="count-dropdown">Select Item to Count:</label>
+                <select id="count-dropdown">
+                <option value="Notebook">Notebook</option>
+                <option value="Section Group">Section Group</option>
+                <option value="Section">Section</option>
+                <option value="Page">Page</option>
+                <option value="SubPage">SubPage</option>
+                <option value="Word count">Word count</option>
+                </select>
+            </div>
+            
+            <button id="run">Run</button>
+
+            <div id="result"></div>
         </div>
-        <p><label id="item-subject"></label></p>
     </main>
 </body>
 
